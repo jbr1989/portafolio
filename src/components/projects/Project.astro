@@ -8,11 +8,12 @@ export interface Props {
   title: string;
   img: string;
   description: string;
-  technologies?: Technology[];
+  technologies?: string[];
   link: string;
+  code: string;
 }
 
-const { technologies, title, img, description, link } = Astro.props;
+const { technologies, title, img, description, link, code } = Astro.props;
 ---
 
     <li class="li-project">
@@ -21,17 +22,17 @@ const { technologies, title, img, description, link } = Astro.props;
         <p class="description-project">
             {description}
         </p>
-        <!-- <p class="title-technologies">tecnologías usadas</p>
+        <!-- <p class="title-technologies">tecnologías usadas</p> -->
         <div class="container-technologies">
             {
-                technologies.map(({ icon }) => {
-                    const IconComponent = getIconComponent(icon);
-                    return <i>{IconComponent && <IconComponent />}</i>;
-                })
+                technologies.map((tecnology) => (
+                    <img src={"/img/icons/tecnology/"+tecnology+".svg"} alt={tecnology} title={tecnology} loading="lazy"></img>
+                ))
             } 
-        </div> -->
+        </div>
         <div class="container-link-project">
-            <a href={link} target="_blank">Ver más</a>
+            {link ? (<a href={link} target="_blank">Ver más</a>) : ( <div></div> )}
+            {code ? (<a href={code} target="_blank">Ver código</a>) : ( <div></div> )}
         </div>
     </li>
 
@@ -64,7 +65,7 @@ const { technologies, title, img, description, link } = Astro.props;
     position: absolute;
     width: 100%;
     height: 5px;
-    background-color: rgba(0, 0, 0, 0.3);
+    /* background-color: rgba(0, 0, 0, 0.3); */
     z-index: -1;
     bottom: 0;
     transition: 0.3s ease-in-out;
@@ -132,14 +133,19 @@ const { technologies, title, img, description, link } = Astro.props;
     position: relative;
     display: flex;
     justify-content: start;
-    padding: 10px 10px;
+    padding: 0 10px;
     column-gap: 20px;
     flex-wrap: wrap;
     color: white;
   }
+  .container-technologies img {
+    width:30px;
+    height:30px;
+  }
   .container-link-project {
+    display:flex;
+    justify-content: space-between;
     position: relative;
-    width: 100%;
     padding: 20px 10px;
   }
 
