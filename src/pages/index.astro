@@ -1,0 +1,50 @@
+---
+import LinkList from '../components/links/LinkList.astro';
+import ProjectList from '../components/projects/ProjectList.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+
+	<div class="container">
+		<p class="myName" style="color:#01be96;">Jaime Balagué</p>
+
+		<p class="job">Ingeniero Informático</p>
+
+		<LinkList />
+	</div>
+
+	<ProjectList />
+
+</Layout>
+
+<style>
+	
+
+	.container {
+        position: relative;
+        width: 100%;
+		height: 70vh;
+		max-height: 500px;
+        text-align: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+		display:grid;
+		align-items: center;
+		align-content: center;
+		justify-content: center;
+    }
+
+	.myName{
+		font-size: 48px;
+		line-height: 96px;
+		margin-top: 10px;
+		margin-bottom: 16px;
+		font-weight: 800;
+		text-align
+	}
+
+	.job{
+		text-transform: uppercase;
+	}
+</style>

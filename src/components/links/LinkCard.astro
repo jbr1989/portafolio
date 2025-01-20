@@ -1,0 +1,41 @@
+---
+
+interface Props {
+    href: string;
+    text: string;
+    icon: string;
+    styles?: string;
+}
+
+const { href, text, icon, styles } = Astro.props;
+
+const src = `img/icons/${icon}.svg`;
+---
+
+<a class="button button-linked" href={href} target="_blank" rel="noopener" role="button" style={styles}>
+    <img class="icon" src={src} alt="">
+</a>
+
+<style>
+    .button, button {
+        display: inline-block;
+        text-decoration: none;
+        height: 100%;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 20px;
+        padding: 10px;
+        letter-spacing: 0.1px;
+        white-space: wrap;
+        outline: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .icon {
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+    }
+</style>
