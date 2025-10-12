@@ -1,6 +1,7 @@
 export const projects = [
     {
-        img: "img/projects/twitch_chat.webp",
+        id: "croquetabot",
+        img: "/img/projects/twitch_chat.webp",
         title: "CroquetaBot",
         code: "https://github.com/jbr1989/CroquetaBot",
         link: "",
@@ -9,7 +10,8 @@ export const projects = [
         technologies: ["nodejs", "mysql", "tmijs"],
     },
     {
-        img: "img/projects/pokemon_cards.webp",
+        id: "pokemon_cards",
+        img: "/img/projects/pokemon_cards.webp",
         title: "Pokemon TCG Card Browser",
         code: "https://github.com/jbr1989/pokemon_cards",
         link: "https://pokecards.jbr1989.es/",
@@ -18,7 +20,8 @@ export const projects = [
         technologies: [ "astro", "tailwind", "api" ]
     },
     {
-        img: "img/projects/umaruverse.webp",
+        id: "umaruverse",
+        img: "/img/projects/umaruverse.webp",
         title: "UmaruVerse",
         code: "",
         link: "https://umaru.jbr1989.es/",

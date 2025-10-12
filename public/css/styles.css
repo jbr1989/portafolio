@@ -1,0 +1,32 @@
+a{
+    text-decoration: none;
+    color: currentColor;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    position: relative;
+    width: 90%;
+    max-width: 1355px;
+    margin: 0 auto;
+}
+
+.icon-technology {
+    display:inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+}
+
+.link-button {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    padding: 10px 10px;
+    background-color: #01be96;
+    border-radius: 5px;
+    color: #f6f6f9;
+  }

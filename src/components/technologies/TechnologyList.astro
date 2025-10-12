@@ -1,0 +1,19 @@
+---
+interface Props {
+  technologies: string[];
+}
+
+const { technologies } = Astro.props;
+---
+
+{
+  technologies.map((tecnology) => (
+    <img
+      src={"/img/icons/tecnology/" + tecnology + ".svg"}
+      alt={tecnology}
+      title={tecnology}
+      class="icon-technology"
+      loading="lazy"
+    />
+  ))
+}

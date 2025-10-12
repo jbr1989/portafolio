@@ -1,10 +1,12 @@
 ---
+import TechnologyList from "../technologies/TechnologyList.astro";
 
 type Technology = {
   icon?: string;
 };
 
 export interface Props {
+  project_id: string;
   title: string;
   img: string;
   description: string;
@@ -13,28 +15,38 @@ export interface Props {
   code: string;
 }
 
-const { technologies, title, img, description, link, code } = Astro.props;
+const { project_id, technologies, title, img, description, link, code } =
+  Astro.props;
 ---
 
-    <li class="li-project">
-        <img src={img} alt={title} loading="lazy" />
-        <p class="title-project">{title}</p>
-        <p class="description-project">
-            {description}
-        </p>
-        <!-- <p class="title-technologies">tecnologías usadas</p> -->
-        <div class="container-technologies">
-            {
+<li class="li-project">
+  <img src={img} alt={title} loading="lazy" />
+  <p class="title-project">{title}</p>
+  <p class="description-project">
+    {description}
+  </p>
+  <!-- <p class="title-technologies">tecnologías usadas</p> -->
+  <div class="container-technologies">
+    <TechnologyList technologies={technologies} />
+    <!-- {
                 technologies.map((tecnology) => (
-                    <img src={"/img/icons/tecnology/"+tecnology+".svg"} alt={tecnology} title={tecnology} loading="lazy"></img>
+                    <img src={"/img/icons/tecnology/"+tecnology+".svg"} alt={tecnology} title={tecnology} class="icon-technology" loading="lazy"></img>
                 ))
-            } 
-        </div>
-        <div class="container-link-project">
-            {link ? (<a href={link} target="_blank">Ver más</a>) : ( <div></div> )}
-            {code ? (<a href={code} target="_blank">Ver código</a>) : ( <div></div> )}
-        </div>
-    </li>
+            }  -->
+  </div>
+  <div class="container-link-project">
+    <a class="link-button" href={`/proyecto/${project_id}`}>Ver más</a>
+    {
+      code ? (
+        <a class="link-button" href={code} target="_blank">
+          Ver código
+        </a>
+      ) : (
+        <div />
+      )
+    }
+  </div>
+</li>
 
 <style>
   .li-project {
@@ -85,7 +97,7 @@ const { technologies, title, img, description, link, code } = Astro.props;
   .li-project:hover {
     transform: translateY(-10px);
   }
-  .li-project img {
+  .li-project > img {
     position: relative;
     display: block;
     height: 200px;
@@ -98,7 +110,7 @@ const { technologies, title, img, description, link, code } = Astro.props;
   .title-project {
     color: #f6f6f9;
     padding: 10px 5px 10px 10px;
-    margin:0;
+    margin: 0;
     font-size: 25px;
     font-weight: 700;
   }
@@ -126,7 +138,7 @@ const { technologies, title, img, description, link, code } = Astro.props;
   }
 
   .title-technologies::first-letter {
-   text-transform: capitalize;
+    text-transform: capitalize;
   }
 
   .container-technologies {
@@ -138,25 +150,11 @@ const { technologies, title, img, description, link, code } = Astro.props;
     flex-wrap: wrap;
     color: white;
   }
-  .container-technologies img {
-    width:30px;
-    height:30px;
-  }
+
   .container-link-project {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     position: relative;
     padding: 20px 10px;
   }
-
-  .container-link-project a {
-    position: relative;
-    text-decoration: none;
-    padding: 10px 10px;
-    background-color: #01be96;
-    border-radius: 5px;
-    color: #f6f6f9;
-    justify-content: space-between;
-  }
-
 </style>

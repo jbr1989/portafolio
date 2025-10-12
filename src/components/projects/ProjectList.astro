@@ -1,6 +1,6 @@
 ---
 import { projects } from "../../content/projects";
-import Project from "./Project.astro";
+import Project from "./ProjectListItem.astro";
 ---
 
 <section class="section-projects">
@@ -10,16 +10,19 @@ import Project from "./Project.astro";
     <div>
       <ul class="ul-projects">
         {
-          projects.map(({ description, img, link, technologies, title, code }) => (
-            <Project
-              img={img}
-              description={description}
-              link={link}
-              title={title}
-              technologies={technologies}
-              code={code}
-            />
-          ))
+          projects.map(
+            ({ id, description, img, link, technologies, title, code }) => (
+              <Project
+                project_id={id}
+                img={img}
+                description={description}
+                link={link}
+                title={title}
+                technologies={technologies}
+                code={code}
+              />
+            )
+          )
         }
       </ul>
     </div>
