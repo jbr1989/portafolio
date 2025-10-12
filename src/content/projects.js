@@ -4,6 +4,7 @@ export const projects = [
         title: "CroquetaBot",
         code: "https://github.com/jbr1989/CroquetaBot",
         link: "",
+        type: ["bot"],
         description: "Chatbot de Twitch para interactuar con los espectadores de un canal",
         technologies: ["nodejs", "mysql", "tmijs"],
     },
@@ -12,8 +13,18 @@ export const projects = [
         title: "Pokemon TCG Card Browser",
         code: "https://github.com/jbr1989/pokemon_cards",
         link: "https://pokecards.jbr1989.es/",
+        type: ["web"],
         description: "Buscador de cartas de Pokemon TCG (EN DESARROLLO)",
         technologies: [ "astro", "tailwind", "api" ]
+    },
+    {
+        img: "img/projects/umaruverse.webp",
+        title: "UmaruVerse",
+        code: "",
+        link: "https://umaru.jbr1989.es/",
+        type: ["game"],
+        description: "Minijuegos ambientados en el universo de la youtuber UmaruChan",
+        technologies: [ "godot" ]
     },
 
 ];
