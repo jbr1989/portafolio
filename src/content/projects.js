@@ -11,7 +11,7 @@ export const projects = [
         img: "img/projects/pokemon_cards.webp",
         title: "Pokemon TCG Card Browser",
         code: "https://github.com/jbr1989/pokemon_cards",
-        link: "https://pokemon.jbr1989.es/",
+        link: "https://pokecards.jbr1989.es/",
         description: "Buscador de cartas de Pokemon TCG (EN DESARROLLO)",
         technologies: [ "astro", "tailwind", "api" ]
     },
