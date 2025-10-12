@@ -9,21 +9,20 @@ export interface Props {
   project_id: string;
   title: string;
   img: string;
-  description: string;
+  descr: string;
   technologies?: string[];
   link: string;
   code: string;
 }
 
-const { project_id, technologies, title, img, description, link, code } =
-  Astro.props;
+const { project_id, technologies, title, img, descr, link, code } = Astro.props;
 ---
 
 <li class="li-project">
   <img src={img} alt={title} loading="lazy" />
   <p class="title-project">{title}</p>
   <p class="description-project">
-    {description}
+    {descr}
   </p>
   <!-- <p class="title-technologies">tecnologías usadas</p> -->
   <div class="container-technologies">
