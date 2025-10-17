@@ -28,7 +28,8 @@ const { id } = Astro.params;
 const { project } = Astro.props;
 
 const readme =
-  (await github.getReadme(project.id)) || "<p>No hay README disponible</p>";
+  (await github.getReadme(project.repository)) ||
+  "<p>No hay README disponible</p>";
 
 marked.use({ renderer });
 const htmlReadme = marked.parse(readme);
