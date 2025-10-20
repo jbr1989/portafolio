@@ -1,5 +1,8 @@
 ---
 import TechnologyList from "../technologies/TechnologyList.astro";
+import InfoIcon from "../../assets/icons/info.svg";
+import GithubIcon from "../../assets/icons/github.svg";
+import WebsiteIcon from "../../assets/icons/website.svg";
 
 type Technology = {
   icon?: string;
@@ -34,11 +37,37 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
             }  -->
   </div>
   <div class="container-link-project">
-    <a class="link-button" href={`/proyecto/${project_id}`}>Ver más</a>
+    <a href={`/proyecto/${project_id}`}>
+      <InfoIcon
+        class="icon-technology"
+        alt="Información"
+        title="Ver información"
+        style="fill:white;"
+      />
+    </a>
     {
       code ? (
-        <a class="link-button" href={code} target="_blank">
-          Ver código
+        <a href={code} target="_blank">
+          <GithubIcon
+            class="icon-technology"
+            alt="GitHub"
+            title="Ver código"
+            style="fill:white;"
+          />
+        </a>
+      ) : (
+        <div />
+      )
+    }
+    {
+      link ? (
+        <a href={link} target="_blank">
+          <WebsiteIcon
+            class="icon-technology"
+            alt="Website"
+            title="Ver proyecto"
+            style="fill:white;"
+          />
         </a>
       ) : (
         <div />
@@ -151,9 +180,29 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
   }
 
   .container-link-project {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
     justify-content: space-between;
+    justify-items: stretch;
+    align-items: stretch;
     position: relative;
-    padding: 20px 10px;
+    text-align: center;
+    margin-top: 2em;
+  }
+  .container-link-project > a {
+    background: rgba(0, 0, 0, 0.3);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 1em;
+  }
+
+  .container-link-project > a:hover {
+    background: #002f624f;
+  }
+
+  .container-link-project img {
+    display: inline-block;
   }
 </style>
