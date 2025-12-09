@@ -32,5 +32,16 @@ export const projects = [
         descr: "Minijuegos ambientados en el universo de la youtuber UmaruChan",
         technologies: [ "godot" ]
     },
+    {
+        id: "elisawaves_vods",
+        img: "/img/projects/elisawaves_vods.webp",
+        title: "ElisaWaves VODs",
+        repository: "ElisaWaves-VODs",
+        code: "https://github.com/jbr1989/elisawaves-vods",
+        link: "https://elisawaves.es/",
+        type: ["web"],
+        descr: "Web de VODs de la streamer ElisaWaves",
+        technologies: [ "astro", "tailwind", "api" ]
+    },
 
 ];
