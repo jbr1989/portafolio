@@ -7,6 +7,8 @@ import Layout from '../layouts/Layout.astro';
 <Layout>
 
 	<div id="inicio">
+		<img src="/img/perfil.webp" class="profile"/> 
+
 		<p class="myName" style="color:#01be96;">Jaime Balagué</p>
 
 		<p class="job">Ingeniero Informático</p>
@@ -34,6 +36,15 @@ import Layout from '../layouts/Layout.astro';
 		justify-content: center;
 	}
 	
+	.profile {
+		margin:auto;
+		width: 200px;
+		aspect-ratio: 1/1;
+		border-radius: 50%;
+		object-fit: cover;
+		object-position: center;
+		box-shadow: 0 0 15px rgba(0,0,0,0.2);
+	}
 
 	.myName{
 		font-size: 48px;

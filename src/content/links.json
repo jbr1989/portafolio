@@ -1,20 +1,14 @@
 [
-    {
-        "text": "LinkedIn",
-        "icon": "linkedin",
-        "link": "https://www.linkedin.com/in/jaime-balague-roig-16455612a/",
-        "styles": "color:white; background:#2867b2;"
-    },
-    {
-        "text": "Mis proyectos",
-        "icon": "github",
-        "link": "https://github.com/jbr1989",
-        "styles": "color:white; background:#000;"
-    },
-    {
-        "text": "Correo",
-        "icon": "email",
-        "link": "",
-        "styles": "color:#111; background:#aaa;"
-    }
+  {
+    "text": "LinkedIn",
+    "icon": "linkedin",
+    "link": "https://www.linkedin.com/in/jaime-balague-roig-16455612a/",
+    "styles": "color:white; background:#2867b2;"
+  },
+  {
+    "text": "Mis proyectos",
+    "icon": "github",
+    "link": "https://github.com/jbr1989",
+    "styles": "color:white; background:#000;"
+  }
 ]

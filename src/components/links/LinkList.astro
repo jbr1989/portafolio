@@ -1,26 +1,28 @@
 ---
 import LinkCard from "./LinkCard.astro";
-import links from '../../content/links.json';
-
+import links from "../../content/links.json";
 ---
 
 <div class="linkList">
-
-    {
-        links.map(link => (
-            <LinkCard href={link.link} text={link.text} icon={link.icon} styles={link.styles} />
-        ))
-    }
-
+  {
+    links.map((link) => (
+      <LinkCard
+        href={link.link}
+        text={link.text}
+        icon={link.icon}
+        styles={link.styles}
+      />
+    ))
+  }
 </div>
 
 <style>
-    .linkList {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap:7px;
-        width: 100%;
-        margin:0 auto;
-    }
+  .linkList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    margin: 0 auto;
+  }
 </style>
