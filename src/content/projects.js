@@ -43,5 +43,16 @@ export const projects = [
         descr: "Web de VODs de la streamer ElisaWaves",
         technologies: [ "astro", "tailwind", "api" ]
     },
+    {
+        id: "apps_lists",
+        img: "/img/projects/apps_lists.webp",
+        title: "Apps Lists",
+        repository: "Apps-Lists",
+        code: "https://github.com/jbr1989/apps-list",
+        link: "https://apps.jbr1989.es/",
+        type: ["web"],
+        descr: "Web de listas de aplicaciones que me parecen interesantes",
+        technologies: [ "astro", "simplecss" ]
+    },
 
 ];
