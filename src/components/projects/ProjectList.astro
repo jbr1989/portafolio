@@ -34,11 +34,11 @@ import Project from "./ProjectListItem.astro";
       <ul class="ul-projects">
         {
           projects.map(
-            ({ id, description, img, link, technologies, title, code }) => (
+            ({ id, descr, img, link, technologies, title, code }) => (
               <Project
                 project_id={id}
                 img={img}
-                description={description}
+                descr={descr}
                 link={link}
                 title={title}
                 technologies={technologies}

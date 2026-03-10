@@ -18,6 +18,7 @@ const src = `img/icons/${icon}.svg`;
   rel="noopener"
   role="button"
   style={styles}
+  aria-label={text}
 >
   <img class="icon" src={src} alt="" />
 </a>
@@ -35,7 +36,7 @@ const src = `img/icons/${icon}.svg`;
     line-height: 20px;
     padding: 10px;
     letter-spacing: 0.1px;
-    white-space: wrap;
+    white-space: normal;
     outline: none;
     border-radius: 8px;
     cursor: pointer;

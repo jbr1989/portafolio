@@ -20,9 +20,9 @@ const linksHeader = [
       <ul class="ul-nav">
         {
           linksHeader.map((link, index) => (
-            <a href={link.link}>
-              <li class="li-nav">{link.text}</li>
-            </a>
+            <li class="li-nav">
+              <a href={link.link}>{link.text}</a>
+            </li>
           ))
         }
       </ul>

@@ -31,29 +31,15 @@ img {
     color: #f6f6f9;
   }
 
-.readme-content {
-    display:block;
-    background: #151b23;
-    color: #f8f8f8;
-    padding: 1em;
-    border-radius: 8px;
-    font-size: 1em;
-    overflow-x: auto;
-  }
+.notepad-body {
+  background: #f3efe2; /* claro tipo papel, no blanco puro */
+}
 
-  /* .readme-content h2 {
-    font-size: 0.8em !important;
-  }
-  .readme-content h3 {
-    font-size: 0.75em !important;
-  }
-  .readme-content h4 {
-    font-size: 0.70em !important;
-  }
-  .readme-content h5 {
-    font-size: 0.65em !important;
-  }
-
-  .readme-content p, .readme-content ul {
-    font-size: 0.65em !important;
-  } */
+.notepad-body .readme-content {
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid #d7ccb0;
+  background: #f3efe2;
+  color: #2b2b2b;
+  line-height: 1.5;
+}

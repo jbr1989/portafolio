@@ -1,0 +1,141 @@
+---
+export interface Props {
+  title?: string;
+}
+
+const { title = "undefined.md" } = Astro.props;
+---
+
+<div class="notepad-window">
+  <div class="notepad-titlebar">
+    <span class="notepad-title">{title}</span>
+    <div class="notepad-buttons">
+      <button
+        type="button"
+        class="btn btn-minimize"
+        aria-label="Minimizar ventana"
+      >
+        ─
+      </button>
+      <button
+        type="button"
+        class="btn btn-maximize"
+        aria-label="Maximizar ventana"
+      >
+        ☐
+      </button>
+    </div>
+  </div>
+
+  <div class="notepad-body">
+    <slot />
+  </div>
+</div>
+
+<script>
+  if (typeof window !== "undefined") {
+    const scriptEl = document.currentScript;
+    const root = scriptEl && scriptEl.previousElementSibling;
+
+    if (root && root.classList && root.classList.contains("notepad-window")) {
+      const minimizeBtn = root.querySelector(".btn-minimize");
+      const maximizeBtn = root.querySelector(".btn-maximize");
+
+      // Minimizar: colapsa / expande el cuerpo
+      minimizeBtn &&
+        minimizeBtn.addEventListener("click", () => {
+          root.classList.toggle("notepad-window--collapsed");
+        });
+
+      // Maximizar: alterna una clase que expande la ventana dentro del contenedor
+      maximizeBtn &&
+        maximizeBtn.addEventListener("click", () => {
+          root.classList.toggle("notepad-window--maximized");
+        });
+    }
+  }
+</script>
+
+<style>
+  .notepad-window {
+    margin-top: 1em;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .notepad-window--maximized {
+    width: 100%;
+    max-width: none;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .notepad-window--maximized .notepad-body {
+    flex: 1;
+    overflow: auto;
+  }
+
+  .notepad-window--collapsed .notepad-body {
+    display: none;
+  }
+
+  .notepad-window {
+    border: 1px solid #30363d;
+    background: #161b22;
+  }
+
+  .notepad-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px;
+    border-bottom: 1px solid #c3c3c3;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 0.85rem;
+  }
+
+  .notepad-titlebar {
+    background: linear-gradient(to bottom, #24292f, #161b22);
+    border-bottom-color: #30363d;
+  }
+
+  .notepad-title {
+    font-weight: 600;
+    color: #f6f8fa;
+  }
+
+  .notepad-buttons {
+    display: flex;
+    gap: 4px;
+  }
+
+  .notepad-buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 18px;
+    border: 1px solid #30363d;
+    background: #21262d;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+
+  .notepad-buttons .btn-theme-toggle {
+    cursor: pointer;
+    font-size: 0.7rem;
+  }
+
+  .notepad-buttons .btn:hover {
+    filter: brightness(0.95);
+  }
+
+  .notepad-body {
+    padding: 1.25em 1.5em;
+    background: #f3efe2;
+    color: #2b2b2b;
+  }
+</style>
+

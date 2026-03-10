@@ -5,6 +5,7 @@ import * as github from "../../utils/github";
 import Layout from "../../layouts/Layout.astro";
 import { projects } from "../../content/projects";
 import TechnologyList from "../../components/technologies/TechnologyList.astro";
+import NotepadWindow from "../../components/NotepadWindow.astro";
 
 export async function getStaticPaths() {
   return projects.map((project) => ({
@@ -76,8 +77,10 @@ const htmlReadme = marked.parse(readme);
     </div>
   </div>
   <div class="container">
-    <h2>README</h2>
-    <code class="readme-content" set:html={htmlReadme} />
+
+    <NotepadWindow title="README.md">
+      <div set:html={htmlReadme} />
+    </NotepadWindow>
   </div>
 </Layout>
 
