@@ -42,12 +42,7 @@ const htmlReadme = marked.parse(readme);
     <div>
       <h1>{project.title}</h1>
 
-      <p>{project.descr}</p>
-
-      <div>
-        Tecnologías usadas:
-        <TechnologyList technologies={project.technologies} />
-      </div>
+      
 
       <div>
         {
@@ -69,6 +64,15 @@ const htmlReadme = marked.parse(readme);
           )
         }
       </div>
+
+      <p>{project.descr}</p>
+
+      
+      <div>
+        Tecnologías usadas:
+        <TechnologyList technologies={project.technologies} />
+      </div>
+      
     </div>
   </div>
   <div class="container">
@@ -89,5 +93,11 @@ const htmlReadme = marked.parse(readme);
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     margin-top: 3em;
+  }
+
+  #proyecto-info > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 </style>

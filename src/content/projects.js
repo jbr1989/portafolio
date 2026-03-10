@@ -47,7 +47,7 @@ export const projects = [
         id: "apps_lists",
         img: "/img/projects/apps_lists.webp",
         title: "Apps Lists",
-        repository: "Apps-Lists",
+        repository: "apps-list",
         code: "https://github.com/jbr1989/apps-list",
         link: "https://apps.jbr1989.es/",
         type: ["web"],

@@ -1,8 +1,10 @@
 
 
 export async function getReadme(github_project: string) {
-    const response = await fetch(`https://api.github.com/repos/jbr1989/${github_project}/readme`);
+    const url = `https://api.github.com/repos/jbr1989/${github_project}/readme`
+    const response = await fetch(url);
     if (response.status !== 200) {
+        console.log("URL: ", url);
         console.error(`Error al obtener el README de ${github_project}: ${response.status}`);
         return null;
     }
