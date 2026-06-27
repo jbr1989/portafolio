@@ -27,14 +27,8 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
   <p class="description-project">
     {descr}
   </p>
-  <!-- <p class="title-technologies">tecnologías usadas</p> -->
   <div class="container-technologies">
-    <TechnologyList technologies={technologies} />
-    <!-- {
-                technologies.map((tecnology) => (
-                    <img src={"/img/icons/tecnology/"+tecnology+".svg"} alt={tecnology} title={tecnology} class="icon-technology" loading="lazy"></img>
-                ))
-            }  -->
+    <TechnologyList technologies={technologies || []} />
   </div>
   <div class="container-link-project">
     <a href={`/proyecto/${project_id}`}>
@@ -96,9 +90,9 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
     flex-direction: column;
   }
 
-  .li-project:nth-child() {
+  /* .li-project:nth-child() {
     min-height: 100%;
-  }
+  } */
 
   .li-project::before {
     content: "";

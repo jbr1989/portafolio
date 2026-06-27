@@ -1,4 +1,20 @@
 ---
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title = "Jaime Balagué",
+  description = "Portafolio de Jaime Balagué — Ingeniero Informático",
+  image = "/img/perfil.webp",
+  type = "website"
+} = Astro.props;
+
+const siteUrl = "https://jbr1989.es";
+
 import Header from "../components/Header.astro";
 ---
 
@@ -8,9 +24,23 @@ import Header from "../components/Header.astro";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content="Jaime Balagué" />
+    <meta name="description" content={description} />
     <meta name="author" content="Jaime Balagué" />
-    <title>Jaime Balagué</title>
+    <title>{title}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${image}`} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Jaime Balagué" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${image}`} />
 
     <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/styles.css" />
@@ -18,6 +48,7 @@ import Header from "../components/Header.astro";
     <script
       type="module"
       data-entity="portafolio"
+      async
       src="https://info.jbr1989.es/script.js"></script>
   </head>
   <body>
@@ -29,11 +60,11 @@ import Header from "../components/Header.astro";
 </html>
 
 <style is:global>
-  @font-face {
+  /* @font-face {
     font-family: "Open Sans";
-    /* src: url("fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2")
-      format("woff2"); */
-  }
+    src: url("fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2")
+      format("woff2");
+  } */
 
   html {
     font-size: 18px;

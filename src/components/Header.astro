@@ -14,7 +14,7 @@ const linksHeader = [
 <header>
   <div class="header">
     <a href="/">
-      <h1 id="inicio">Portafolio</h1>
+      <h1>Portafolio</h1>
     </a>
     <nav class="nav">
       <ul class="ul-nav">
@@ -210,11 +210,18 @@ const linksHeader = [
       width: 100%;
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 20;
-      display: none;
+      visibility: none;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      pointer-events: none;
+      /* display: none; */
     }
     .activa-menu-drop {
-      display: block;
-      transition: 0.5s display;
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+      /* display: block; */
+      /* transition: 0.5s display; */
     }
     .ul-nav {
       flex-direction: column;

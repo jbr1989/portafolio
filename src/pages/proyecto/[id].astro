@@ -37,12 +37,16 @@ marked.use({ renderer });
 const htmlReadme = marked.parse(readme);
 ---
 
-<Layout>
+<Layout
+  title={`${project.title} — Jaime Balagué`}
+  description={`${project.descr} — Proyecto de ${project.title}`}
+  image={project.img}
+  type="article">
   <div id="proyecto-info" class="container">
     <img src={project.img} alt={project.title} loading="lazy" />
 
     <div>
-      <h1>{project.title}</h1>
+      <h2>{project.title}</h2>
 
       
 
@@ -86,7 +90,7 @@ const htmlReadme = marked.parse(readme);
 </Layout>
 
 <style>
-  h1 {
+  h2 {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 50px;
