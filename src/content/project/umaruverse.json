@@ -1,0 +1,10 @@
+{
+  "img": "/img/projects/umaruverse.webp",
+  "title": "UmaruVerse",
+  "repository": "UmaruVerse-HTML",
+  "code": "https://github.com/jbr1989/UmaruVerse-HTML",
+  "link": "https://umaru.jbr1989.es/",
+  "type": ["game"],
+  "descr": "Minijuegos ambientados en el universo de la youtuber UmaruChan",
+  "technologies": ["godot"]
+}

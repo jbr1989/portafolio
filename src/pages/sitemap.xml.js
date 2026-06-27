@@ -1,5 +1,5 @@
 // src/pages/sitemap.xml.js
-import { projects } from "../content/projects";
+import { getCollection } from "astro:content";
 import { buildTime } from "../utils/time";
 
 function createUrl(
@@ -32,8 +32,9 @@ export async function GET() {
 
 		// PÁGINAS DINÁMICAS
 
-		// PROJECTS
-		for (const project of projects) {
+		// PROJECTS — Content Collection
+		const projectEntries = await getCollection("project");
+		for (const project of projectEntries) {
 			sitemapContent += createUrl(`${dominio}proyecto/${project.id}`);
 		}
 

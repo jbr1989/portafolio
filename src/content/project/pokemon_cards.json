@@ -1,0 +1,10 @@
+{
+  "img": "/img/projects/pokemon_cards.webp",
+  "title": "Pokemon TCG Card Browser",
+  "repository": "pokemon_cards",
+  "code": "https://github.com/jbr1989/pokemon_cards",
+  "link": "https://pokecards.jbr1989.es/",
+  "type": ["web"],
+  "descr": "Buscador de cartas de Pokemon TCG (EN DESARROLLO)",
+  "technologies": ["astro", "tailwind", "api"]
+}

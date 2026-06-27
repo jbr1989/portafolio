@@ -1,0 +1,10 @@
+{
+  "img": "/img/projects/apps_lists.webp",
+  "title": "Apps Lists",
+  "repository": "apps-list",
+  "code": "https://github.com/jbr1989/apps-list",
+  "link": "https://apps.jbr1989.es/",
+  "type": ["web"],
+  "descr": "Web de listas de aplicaciones que me parecen interesantes",
+  "technologies": ["astro", "simplecss"]
+}

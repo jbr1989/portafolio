@@ -1,6 +1,12 @@
 ---
-import { projects } from "../../content/projects";
+import { getCollection } from "astro:content";
 import Project from "./ProjectListItem.astro";
+
+const projectEntries = await getCollection("project");
+const projects = projectEntries.map((entry) => ({
+  id: entry.id,
+  ...entry.data,
+}));
 ---
 
 <section class="section-projects">

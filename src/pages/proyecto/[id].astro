@@ -1,16 +1,17 @@
 ---
 import { marked } from "marked";
 import * as github from "../../utils/github";
+import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
-import { projects } from "../../content/projects";
 import TechnologyList from "../../components/technologies/TechnologyList.astro";
 import NotepadWindow from "../../components/NotepadWindow.astro";
 
 export async function getStaticPaths() {
-  return projects.map((project) => ({
-    params: { id: project.id },
-    props: { project },
+  const projects = await getCollection("project");
+  return projects.map((entry) => ({
+    params: { id: entry.id },
+    props: { project: { id: entry.id, ...entry.data } },
   }));
 }
 
