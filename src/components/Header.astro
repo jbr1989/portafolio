@@ -17,48 +17,48 @@ const linksHeader = [
       <h1>Portafolio</h1>
     </a>
     <nav class="nav">
-      <ul class="ul-nav">
+      <ul class="nav-list">
         {
           linksHeader.map((link, index) => (
-            <li class="li-nav">
+            <li class="nav-item">
               <a href={link.link}>{link.text}</a>
             </li>
           ))
         }
       </ul>
     </nav>
-    <div class="container-bnt-menu">
-      <div class="btn-menu">
-        <span class="linea-menu" id="linea1"></span>
-        <span class="linea-menu" id="linea2"></span>
-        <span class="linea-menu" id="linea3"></span>
+    <div class="menu-toggle-container">
+      <div class="menu-toggle">
+        <span class="menu-line" id="line1"></span>
+        <span class="menu-line" id="line2"></span>
+        <span class="menu-line" id="line3"></span>
       </div>
     </div>
 
-    <div class="menu-drop"></div>
+    <div class="menu-overlay"></div>
   </div>
 
   <script>
     const $menu = document.querySelector(".nav");
-    const $menuDrop = document.querySelector(".menu-drop");
-    const $btnmenu = document.querySelector(".btn-menu");
-    const $linea1 = document.querySelector("#linea1");
-    const $linea2 = document.querySelector("#linea2");
-    const $linea3 = document.querySelector("#linea3");
-    $btnmenu.addEventListener("click", () => {
-      $linea1.classList.toggle("activelinea1__bars-menu");
-      $linea2.classList.toggle("activelinea2__bars-menu");
-      $linea3.classList.toggle("activelinea3__bars-menu");
+    const $menuOverlay = document.querySelector(".menu-overlay");
+    const $menuToggle = document.querySelector(".menu-toggle");
+    const $line1 = document.querySelector("#line1");
+    const $line2 = document.querySelector("#line2");
+    const $line3 = document.querySelector("#line3");
+    $menuToggle.addEventListener("click", () => {
+      $line1.classList.toggle("menu-line--active-1");
+      $line2.classList.toggle("menu-line--active-2");
+      $line3.classList.toggle("menu-line--active-3");
       $menu.classList.toggle("menu-activado");
-      $menuDrop.classList.toggle("activa-menu-drop");
+      $menuOverlay.classList.toggle("menu-overlay--active");
     });
 
-    $menuDrop.addEventListener("click", () => {
-      $linea1.classList.toggle("activelinea1__bars-menu");
-      $linea2.classList.toggle("activelinea2__bars-menu");
-      $linea3.classList.toggle("activelinea3__bars-menu");
+    $menuOverlay.addEventListener("click", () => {
+      $line1.classList.toggle("menu-line--active-1");
+      $line2.classList.toggle("menu-line--active-2");
+      $line3.classList.toggle("menu-line--active-3");
       $menu.classList.toggle("menu-activado");
-      $menuDrop.classList.toggle("activa-menu-drop");
+      $menuOverlay.classList.toggle("menu-overlay--active");
     });
   </script>
 </header>
@@ -87,19 +87,19 @@ const linksHeader = [
     color: #f6f6f9;
   }
 
-  .ul-nav {
+  .nav-list {
     position: relative;
     display: flex;
     margin: 0;
     padding: 0;
   }
 
-  .ul-nav a {
+  .nav-list a {
     text-decoration: none;
     color: #f6f6f9;
   }
 
-  .li-nav {
+  .nav-item {
     position: relative;
     list-style: none;
     color: #f6f6f9;
@@ -109,7 +109,7 @@ const linksHeader = [
     text-align: center;
   }
 
-  .li-nav::before {
+  .nav-item::before {
     content: "";
     position: absolute;
     height: 2px;
@@ -118,37 +118,37 @@ const linksHeader = [
     bottom: -3px;
   }
 
-  .li-nav:hover::before {
+  .nav-item:hover::before {
     width: 100%;
     transition: 0.4s;
   }
 
-  .li-nav:hover {
+  .nav-item:hover {
     color: #01be96;
   }
 
-  .container-bnt-menu {
+  .menu-toggle-container {
     display: none;
   }
 
-  .menu-drop {
+  .menu-overlay {
     display: none;
   }
   /* resposive */
 
   @media (max-width: 720px) {
-    .menu-drop {
+    .menu-overlay {
       display: block;
     }
-    .container-bnt-menu {
+    .menu-toggle-container {
       display: block;
     }
-    .container-bnt-menu {
+    .menu-toggle-container {
       position: relative;
       padding: 0px 20px;
       z-index: 9999;
     }
-    .linea-menu {
+    .menu-line {
       display: block;
       position: relative;
       height: 2px;
@@ -160,14 +160,14 @@ const linksHeader = [
       transform-origin: 0px 100%;
       transition: all 0.4s;
     }
-    .activelinea1__bars-menu {
+    .menu-line--active-1 {
       transform: rotate(40deg) translate(-2px, 1px);
     }
-    .activelinea2__bars-menu {
+    .menu-line--active-2 {
       opacity: 0;
       margin-left: -30px;
     }
-    .activelinea3__bars-menu {
+    .menu-line--active-3 {
       transform: rotate(-40deg) translate(-2px, 1px);
     }
     .nav {
@@ -182,17 +182,17 @@ const linksHeader = [
       z-index: 100;
     }
 
-    .li-nav {
+    .nav-item {
       padding: 30px 80px;
       text-align: left;
       width: 100%;
       margin: 0;
     }
-    .li-nav:hover {
+    .nav-item:hover {
       background-color: #01be96;
       color: #000;
     }
-    .li-nav:hover::before {
+    .nav-item:hover::before {
       content: "";
       width: 0;
       height: 0;
@@ -202,7 +202,7 @@ const linksHeader = [
       right: 0px;
       transition: right 0.4s ease-in-out;
     }
-    .menu-drop {
+    .menu-overlay {
       top: 0;
       left: 0;
       position: fixed;
@@ -210,20 +210,17 @@ const linksHeader = [
       width: 100%;
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 20;
-      visibility: none;
+      visibility: hidden;
       opacity: 0;
       transition: opacity 0.3s ease, visibility 0.3s ease;
       pointer-events: none;
-      /* display: none; */
     }
-    .activa-menu-drop {
+    .menu-overlay--active {
       visibility: visible;
       opacity: 1;
       pointer-events: auto;
-      /* display: block; */
-      /* transition: 0.5s display; */
     }
-    .ul-nav {
+    .nav-list {
       flex-direction: column;
       width: 100%;
     }

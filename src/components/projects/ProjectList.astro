@@ -9,11 +9,10 @@ const projects = projectEntries.map((entry) => ({
 }));
 ---
 
-<section class="section-projects">
-  <!-- <div class="linear-grandient-1"></div> -->
-  <div class="container-projects">
-    <div class="header-projects">
-      <h2 class="title-projects" id="proyectos">Proyectos</h2>
+<section class="projects-section">
+  <div class="projects-container">
+    <div class="projects-header">
+      <h2 class="projects-title" id="proyectos">Proyectos</h2>
       <a
         href="https://audit.jbr1989.es/latest.html"
         target="_blank"
@@ -37,7 +36,7 @@ const projects = projectEntries.map((entry) => ({
     </div>
 
     <div>
-      <ul class="ul-projects">
+      <ul class="projects-grid">
         {
           projects.map(
             ({ id, descr, img, link, technologies, title, code }) => (
@@ -69,20 +68,19 @@ const projects = projectEntries.map((entry) => ({
     z-index: 0;
   } */
 
-  .section-projects {
+  .projects-section {
     position: relative;
-    /* background-color: #111111; */
     overflow: hidden;
     margin-top: 5em;
   }
 
-  .container-projects {
+  .projects-container {
     position: relative;
     width: 90%;
     margin: 0 auto;
     max-width: 1355px;
   }
-  .header-projects {
+  .projects-header {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -92,13 +90,13 @@ const projects = projectEntries.map((entry) => ({
     scroll-margin-top: 80px;
   }
 
-  .title-projects {
+  .projects-title {
     font-size: 27px;
     font-weight: 800;
     margin: 0;
   }
 
-  .ul-projects {
+  .projects-grid {
     position: relative;
     display: grid;
     place-items: center;
@@ -106,26 +104,26 @@ const projects = projectEntries.map((entry) => ({
     width: 100%;
     height: 100%;
   }
-  .ul-projects a {
+  .projects-grid a {
     text-decoration: none;
   }
 
   /* responsive */
 
   @media (min-width: 300px) {
-    .ul-projects {
+    .projects-grid {
       grid-template-columns: 1fr;
       gap: 50px;
     }
   }
   @media (min-width: 700px) {
-    .ul-projects {
+    .projects-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 30px;
     }
   }
   @media (min-width: 1200px) {
-    .ul-projects {
+    .projects-grid {
       grid-template-columns: repeat(3, 1fr);
       justify-content: space-between;
     }
