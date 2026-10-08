@@ -5,58 +5,244 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
+	<section id="inicio" class="hero-section">
+		<div class="hero-container">
+			<!-- Columna 1: Presentación & Bio -->
+			<div class="hero-content">
 
-	<div id="inicio">
-		<img src="/img/perfil.webp" class="profile" alt="Foto de perfil de Jaime Balagué" width="200" height="200" /> 
+				<h1 class="my-name">
+					Hola, soy <span class="name-highlight">Jaime Balagué</span>
+				</h1>
 
-		<p class="my-name">Jaime Balagué</p>
+				<p class="job-title">Ingeniero Informático</p>
 
-		<p class="job">Ingeniero Informático</p>
 
-		<LinkList />
-	</div>
+				<div class="hero-actions">
+					<LinkList />
+				</div>
+			</div>
+
+			<!-- Columna 2: Avatar con efecto glow ring -->
+			<div class="hero-visual">
+				<div class="avatar-glow-ring">
+					<div class="avatar-backdrop" aria-hidden="true"></div>
+					<img
+						src="/img/perfil.webp"
+						class="profile-img"
+						alt="Foto de perfil de Jaime Balagué"
+						width="240"
+						height="240"
+						loading="eager"
+					/>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<ProjectList />
-
 </Layout>
 
 <style>
-	
-	#inicio {
+	.hero-section {
 		position: relative;
 		width: 100%;
-		height: 70vh;
-		max-height: 500px;
-		text-align: center;
-		padding: 0 20px;
+		padding: 4.5rem 0 3rem 0;
 		box-sizing: border-box;
-		display:grid;
+	}
+
+	.hero-container {
+		width: 90%;
+		max-width: 1280px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1.25fr 0.85fr;
+		gap: 3.5rem;
 		align-items: center;
-		align-content: center;
+	}
+
+	/* Columna de contenido */
+	.hero-content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1.25rem;
+		text-align: left;
+	}
+
+	.status-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 6px 14px;
+		border-radius: 20px;
+		font-size: 0.82rem;
+		font-weight: 600;
+		color: var(--color-primary, #01be96);
+		background: rgba(1, 190, 150, 0.1);
+		border: 1px solid rgba(1, 190, 150, 0.25);
+	}
+
+	.status-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background-color: var(--color-primary, #01be96);
+		box-shadow: 0 0 10px var(--color-primary, #01be96);
+		animation: pulseDot 2s ease-in-out infinite;
+	}
+
+	@keyframes pulseDot {
+		0%, 100% {
+			transform: scale(1);
+			opacity: 1;
+		}
+		50% {
+			transform: scale(1.3);
+			opacity: 0.7;
+		}
+	}
+
+	.my-name {
+		font-size: 3.2rem;
+		line-height: 1.15;
+		margin: 0;
+		font-weight: 800;
+		color: #f6f6f9;
+		letter-spacing: -1px;
+	}
+
+	.name-highlight {
+		background: linear-gradient(135deg, #01be96 0%, #38ef7d 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		display: inline-block;
+	}
+
+	.job-title {
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: #cbd5e1;
+		margin: 0;
+		letter-spacing: -0.2px;
+	}
+
+	.hero-bio {
+		font-size: 1.05rem;
+		line-height: 1.65;
+		color: #94a3b8;
+		margin: 0;
+		max-width: 580px;
+	}
+
+	.hero-actions {
+		margin-top: 0.5rem;
+	}
+
+	/* Columna visual / Avatar */
+	.hero-visual {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.avatar-glow-ring {
+		position: relative;
+		width: 260px;
+		height: 260px;
+		display: flex;
+		align-items: center;
 		justify-content: center;
 	}
-	
-	.profile {
-		margin:auto;
-		width: 200px;
+
+	.avatar-backdrop {
+		position: absolute;
+		inset: -15px;
+		border-radius: 50%;
+		background: radial-gradient(
+			circle,
+			rgba(1, 190, 150, 0.35) 0%,
+			rgba(59, 130, 246, 0.2) 60%,
+			transparent 75%
+		);
+		filter: blur(20px);
+		z-index: 0;
+		animation: avatarPulse 6s ease-in-out infinite alternate;
+	}
+
+	@keyframes avatarPulse {
+		0% {
+			transform: scale(0.95);
+			opacity: 0.7;
+		}
+		100% {
+			transform: scale(1.1);
+			opacity: 1;
+		}
+	}
+
+	.profile-img {
+		position: relative;
+		z-index: 1;
+		width: 230px;
+		height: 230px;
 		aspect-ratio: 1/1;
 		border-radius: 50%;
 		object-fit: cover;
 		object-position: center;
-		box-shadow: 0 0 15px rgba(0,0,0,0.2);
+		border: 3px solid rgba(255, 255, 255, 0.15);
+		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6),
+					0 0 20px rgba(1, 190, 150, 0.25);
+		transition: transform 0.35s ease, border-color 0.35s ease;
 	}
 
-	.my-name{
-		color: var(--color-primary);
-		font-size: 48px;
-		line-height: 96px;
-		margin-top: 10px;
-		margin-bottom: 16px;
-		font-weight: 800;
-		text-align: center;
+	.profile-img:hover {
+		transform: scale(1.03);
+		border-color: rgba(1, 190, 150, 0.6);
 	}
 
-	.job{
-		text-transform: uppercase;
+	/* Responsive */
+	@media (max-width: 900px) {
+		.hero-container {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+			text-align: center;
+		}
+
+		.hero-content {
+			align-items: center;
+			text-align: center;
+		}
+
+		.hero-bio {
+			max-width: 100%;
+		}
+
+		.hero-visual {
+			order: -1;
+		}
+
+		.my-name {
+			font-size: 2.5rem;
+		}
+
+		.avatar-glow-ring {
+			width: 200px;
+			height: 200px;
+		}
+
+		.profile-img {
+			width: 180px;
+			height: 180px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.my-name {
+			font-size: 2rem;
+		}
+
+		.job-title {
+			font-size: 1.1rem;
+		}
 	}
 </style>

@@ -8,11 +8,11 @@ interface Props {
 
 const { href, text, icon, styles } = Astro.props;
 
-const src = `img/icons/${icon}.svg`;
+const src = `/img/icons/${icon}.svg`;
 ---
 
 <a
-  class="button button-linked"
+  class="link-social-btn"
   href={href}
   target="_blank"
   rel="noopener noreferrer"
@@ -20,30 +20,40 @@ const src = `img/icons/${icon}.svg`;
   style={styles}
   aria-label={text}
 >
-  <img class="icon" src={src} alt="" />
+  <img class="icon-social" src={src} alt="" width="18" height="18" />
+  <span class="social-text">{text}</span>
 </a>
 
 <style>
-  .button,
-  button {
-    display: inline-block;
+  .link-social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     text-decoration: none;
-    height: 100%;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 20px;
-    padding: 10px;
-    letter-spacing: 0.1px;
-    white-space: normal;
-    outline: none;
-    border-radius: 8px;
-    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
-  .icon {
-    vertical-align: middle;
-    width: 20px;
-    height: 20px;
+
+  .link-social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.15);
+  }
+
+  .icon-social {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .social-text {
+    line-height: 1;
   }
 </style>
