@@ -1,16 +1,18 @@
 ---
+import { getCollection } from "astro:content";
 import LinkCard from "./LinkCard.astro";
-import links from "../../content/links.json";
+
+const linkEntries = await getCollection("links");
 ---
 
 <div class="linkList">
   {
-    links.map((link) => (
+    linkEntries.map((entry) => (
       <LinkCard
-        href={link.link}
-        text={link.text}
-        icon={link.icon}
-        styles={link.styles}
+        href={entry.data.link}
+        text={entry.data.text}
+        icon={entry.data.icon}
+        styles={entry.data.styles}
       />
     ))
   }

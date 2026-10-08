@@ -1,11 +1,13 @@
 [
   {
+    "id": "linkedin",
     "text": "LinkedIn",
     "icon": "linkedin",
     "link": "https://www.linkedin.com/in/jaime-balague-roig-16455612a/",
     "styles": "color:white; background:#2867b2;"
   },
   {
+    "id": "github",
     "text": "Mis proyectos",
     "icon": "github",
     "link": "https://github.com/jbr1989",
