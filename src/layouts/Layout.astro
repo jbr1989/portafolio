@@ -17,6 +17,8 @@ const siteUrl = "https://jbr1989.es";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 
 import Header from "../components/Header.astro";
+import "../styles/normalize.css";
+import "../styles/styles.css";
 ---
 
 <!doctype html>
@@ -45,9 +47,6 @@ import Header from "../components/Header.astro";
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${siteUrl}${image}`} />
 
-    <link rel="stylesheet" href="/css/normalize.css" />
-    <link rel="stylesheet" href="/css/styles.css" />
-
     <script
       type="module"
       data-entity="portafolio"
@@ -55,6 +54,7 @@ import Header from "../components/Header.astro";
       src="https://info.jbr1989.es/script.js"></script>
   </head>
   <body>
+    <a href="#main-content" class="skip-to-content">Saltar al contenido</a>
     <Header />
     <main id="main-content">
       <slot />
@@ -63,12 +63,6 @@ import Header from "../components/Header.astro";
 </html>
 
 <style is:global>
-  /* @font-face {
-    font-family: "Open Sans";
-    src: url("fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2")
-      format("woff2");
-  } */
-
   html {
     font-size: 18px;
     font-weight: 400;
@@ -81,9 +75,8 @@ import Header from "../components/Header.astro";
 
   body {
     min-height: 100vh;
-    /* display:grid;
-		align-items: center;
-		justify-content: center; */
+    background-color: #121212;
+    color: var(--color-text);
   }
 
   body > header {
@@ -97,4 +90,22 @@ import Header from "../components/Header.astro";
     margin-bottom: 50px;
   }
 
+  .skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: #000;
+    padding: 8px 16px;
+    z-index: 9999;
+    border-radius: 0 0 4px 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.2s;
+  }
+
+  .skip-to-content:focus {
+    top: 0;
+  }
 </style>

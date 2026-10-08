@@ -1,0 +1,53 @@
+:root {
+  --color-primary: #01be96;
+  --color-primary-dark: #008f71;
+  --color-bg-dark: #161b22;
+  --color-card-bg: #25242d;
+  --color-card-border: #3d3e4f;
+  --color-text: #f6f6f9;
+  --color-text-muted: rgba(246, 246, 249, 0.56);
+  --color-notepad-bg: #f3efe2;
+  --color-notepad-text: #2b2b2b;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/open-sans-v34-vietnamese_latin-ext_latin_hebrew_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  position: relative;
+  width: 90%;
+  max-width: 1355px;
+  margin: 0 auto;
+}
+
+.icon-technology {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+}
+
+.link-button {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  padding: 10px 10px;
+  background-color: var(--color-primary);
+  border-radius: 5px;
+  color: var(--color-text);
+}

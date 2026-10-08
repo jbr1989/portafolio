@@ -33,27 +33,23 @@ const { title = "undefined.md" } = Astro.props;
 </div>
 
 <script>
-  if (typeof window !== "undefined") {
-    const scriptEl = document.currentScript;
-    const root = scriptEl && scriptEl.previousElementSibling;
+  function setupNotepadWindows() {
+    document.querySelectorAll(".notepad-window").forEach((windowEl) => {
+      const minimizeBtn = windowEl.querySelector(".btn-minimize");
+      const maximizeBtn = windowEl.querySelector(".btn-maximize");
 
-    if (root && root.classList && root.classList.contains("notepad-window")) {
-      const minimizeBtn = root.querySelector(".btn-minimize");
-      const maximizeBtn = root.querySelector(".btn-maximize");
+      minimizeBtn?.addEventListener("click", () => {
+        windowEl.classList.toggle("notepad-window--collapsed");
+      });
 
-      // Minimizar: colapsa / expande el cuerpo
-      minimizeBtn &&
-        minimizeBtn.addEventListener("click", () => {
-          root.classList.toggle("notepad-window--collapsed");
-        });
-
-      // Maximizar: alterna una clase que expande la ventana dentro del contenedor
-      maximizeBtn &&
-        maximizeBtn.addEventListener("click", () => {
-          root.classList.toggle("notepad-window--maximized");
-        });
-    }
+      maximizeBtn?.addEventListener("click", () => {
+        windowEl.classList.toggle("notepad-window--maximized");
+      });
+    });
   }
+
+  setupNotepadWindows();
+  document.addEventListener("astro:page-load", setupNotepadWindows);
 </script>
 
 <style>
@@ -134,8 +130,8 @@ const { title = "undefined.md" } = Astro.props;
 
   .notepad-body {
     padding: 1.25em 1.5em;
-    background: #f3efe2;
-    color: #2b2b2b;
+    background: var(--color-notepad-bg);
+    color: var(--color-notepad-text);
   }
 </style>
 

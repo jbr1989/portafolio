@@ -70,14 +70,14 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
   .project-card {
     position: relative;
     list-style: none;
-    border: 1px solid #3d3e4f;
+    border: 1px solid var(--color-card-border);
     overflow: hidden;
     max-width: 380px;
     min-width: 300px;
     width: 100%;
     transition: transform, box-shadow, 0.3s;
     border-radius: 7px;
-    background-color: #25242d;
+    background-color: var(--color-card-bg);
     z-index: 1;
     min-height: 100%;
     display: flex;
@@ -120,7 +120,7 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
     pointer-events: none;
   }
   .project-title {
-    color: #f6f6f9;
+    color: var(--color-text);
     padding: 10px 5px 10px 10px;
     margin: 0;
     font-size: 25px;
@@ -132,7 +132,7 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
 
   .project-description {
     padding: 0 10px;
-    color: #f6f6f990;
+    color: var(--color-text-muted);
     font-size: 17px;
     font-weight: 400;
     display: -webkit-box;
