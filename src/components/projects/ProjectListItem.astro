@@ -22,7 +22,7 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
 ---
 
 <li class="project-card">
-  <img src={img} alt={title} loading="lazy" />
+  <img src={img} alt={`Captura del proyecto ${title}`} loading="lazy" width="380" height="200" />
   <p class="project-title">{title}</p>
   <p class="project-description">
     {descr}
@@ -31,7 +31,7 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
     <TechnologyList technologies={technologies || []} />
   </div>
   <div class="project-links">
-    <a href={`/proyecto/${project_id}`}>
+    <a href={`/proyecto/${project_id}`} aria-label={`Ver información de ${title}`}>
       <InfoIcon
         class="icon-technology"
         alt="Información"
@@ -41,7 +41,7 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
     </a>
     {
       code ? (
-        <a href={code} target="_blank">
+        <a href={code} target="_blank" rel="noopener noreferrer" aria-label={`Ver código de ${title} en GitHub`}>
           <GithubIcon
             class="icon-technology"
             alt="GitHub"
@@ -49,13 +49,11 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
             style="fill:white;"
           />
         </a>
-      ) : (
-        <div />
-      )
+      ) : null
     }
     {
       link ? (
-        <a href={link} target="_blank">
+        <a href={link} target="_blank" rel="noopener noreferrer" aria-label={`Ver proyecto ${title}`}>
           <WebsiteIcon
             class="icon-technology"
             alt="Website"
@@ -63,9 +61,7 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
             style="fill:white;"
           />
         </a>
-      ) : (
-        <div />
-      )
+      ) : null
     }
   </div>
 </li>

@@ -43,7 +43,7 @@ const htmlReadme = marked.parse(readme);
   image={project.img}
   type="article">
   <div id="proyecto-info" class="container">
-    <img src={project.img} alt={project.title} loading="lazy" />
+    <img src={project.img} alt={`Captura del proyecto ${project.title}`} loading="lazy" width="600" height="400" />
 
     <div>
       <h2>{project.title}</h2>
@@ -53,21 +53,17 @@ const htmlReadme = marked.parse(readme);
       <div>
         {
           project.link ? (
-            <a href={project.link} target="_blank" class="link-button">
+            <a href={project.link} target="_blank" rel="noopener noreferrer" class="link-button">
               Ver más
             </a>
-          ) : (
-            <div />
-          )
+          ) : null
         }
         {
           project.code ? (
-            <a href={project.code} target="_blank" class="link-button">
+            <a href={project.code} target="_blank" rel="noopener noreferrer" class="link-button">
               Ver código
             </a>
-          ) : (
-            <div />
-          )
+          ) : null
         }
       </div>
 

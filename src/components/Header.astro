@@ -13,11 +13,11 @@ const linksHeader = [
 
 <header>
   <div class="header">
-    <a href="/">
+    <a href="/" aria-label="Ir al inicio">
       <h1>Portafolio</h1>
     </a>
-    <nav class="nav">
-      <ul class="nav-list">
+    <nav class="nav" aria-label="Navegación principal">
+      <ul class="nav-list" role="list">
         {
           linksHeader.map((link, index) => (
             <li class="nav-item">
@@ -28,11 +28,17 @@ const linksHeader = [
       </ul>
     </nav>
     <div class="menu-toggle-container">
-      <div class="menu-toggle">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
         <span class="menu-line" id="line1"></span>
         <span class="menu-line" id="line2"></span>
         <span class="menu-line" id="line3"></span>
-      </div>
+      </button>
     </div>
 
     <div class="menu-overlay"></div>
@@ -45,21 +51,24 @@ const linksHeader = [
     const $line1 = document.querySelector("#line1");
     const $line2 = document.querySelector("#line2");
     const $line3 = document.querySelector("#line3");
-    $menuToggle.addEventListener("click", () => {
-      $line1.classList.toggle("menu-line--active-1");
-      $line2.classList.toggle("menu-line--active-2");
-      $line3.classList.toggle("menu-line--active-3");
-      $menu.classList.toggle("menu-activado");
-      $menuOverlay.classList.toggle("menu-overlay--active");
-    });
 
-    $menuOverlay.addEventListener("click", () => {
-      $line1.classList.toggle("menu-line--active-1");
-      $line2.classList.toggle("menu-line--active-2");
-      $line3.classList.toggle("menu-line--active-3");
-      $menu.classList.toggle("menu-activado");
-      $menuOverlay.classList.toggle("menu-overlay--active");
-    });
+    function toggleMenu() {
+      $line1?.classList.toggle("menu-line--active-1");
+      $line2?.classList.toggle("menu-line--active-2");
+      $line3?.classList.toggle("menu-line--active-3");
+      $menu?.classList.toggle("menu-activado");
+      $menuOverlay?.classList.toggle("menu-overlay--active");
+
+      const isOpen = $menu?.classList.contains("menu-activado") ?? false;
+      $menuToggle?.setAttribute("aria-expanded", String(isOpen));
+      $menuToggle?.setAttribute(
+        "aria-label",
+        isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"
+      );
+    }
+
+    $menuToggle?.addEventListener("click", toggleMenu);
+    $menuOverlay?.addEventListener("click", toggleMenu);
   </script>
 </header>
 
@@ -143,9 +152,12 @@ const linksHeader = [
     .menu-toggle-container {
       display: block;
     }
-    .menu-toggle-container {
-      position: relative;
+    .menu-toggle {
+      background: none;
+      border: none;
       padding: 0px 20px;
+      cursor: pointer;
+      position: relative;
       z-index: 9999;
     }
     .menu-line {

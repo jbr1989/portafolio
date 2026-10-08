@@ -14,6 +14,7 @@ const {
 } = Astro.props;
 
 const siteUrl = "https://jbr1989.es";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 
 import Header from "../components/Header.astro";
 ---
@@ -26,15 +27,17 @@ import Header from "../components/Header.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <meta name="author" content="Jaime Balagué" />
+    <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`${siteUrl}${image}`} />
-    <meta property="og:url" content={siteUrl} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content="Jaime Balagué" />
+    <meta property="og:locale" content="es_ES" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -53,7 +56,7 @@ import Header from "../components/Header.astro";
   </head>
   <body>
     <Header />
-    <main>
+    <main id="main-content">
       <slot />
     </main>
   </body>
@@ -93,5 +96,5 @@ import Header from "../components/Header.astro";
   main {
     margin-bottom: 50px;
   }
-  
+
 </style>
