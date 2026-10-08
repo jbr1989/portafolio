@@ -6,14 +6,59 @@ interface Props {
 const { technologies } = Astro.props;
 ---
 
-{
-  technologies.map((technology) => (
-    <img
-      src={"/img/icons/tecnology/" + technology + ".svg"}
-      alt={technology}
-      title={technology}
-      class="icon-technology"
-      loading="lazy"
-    />
-  ))
-}
+<div class="technologies-container">
+  {
+    technologies.map((technology) => (
+      <div class="tech-chip" title={technology}>
+        <img
+          src={"/img/icons/tecnology/" + technology + ".svg"}
+          alt={technology}
+          class="tech-chip-icon"
+          loading="lazy"
+          width="20"
+          height="20"
+        />
+        <span class="tech-chip-name">{technology}</span>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .technologies-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .tech-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: #cbd5e1;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .tech-chip:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .tech-chip-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+
+  .tech-chip-name {
+    text-transform: capitalize;
+  }
+</style>

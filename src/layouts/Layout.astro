@@ -54,6 +54,14 @@ import "../styles/styles.css";
       src="https://info.jbr1989.es/script.js"></script>
   </head>
   <body>
+    <!-- Fondo ambiental moderno: Aurora mesh & subtle grid -->
+    <div class="ambient-background" aria-hidden="true">
+      <div class="glow-orb orb-primary"></div>
+      <div class="glow-orb orb-secondary"></div>
+      <div class="glow-orb orb-tertiary"></div>
+      <div class="grid-pattern"></div>
+    </div>
+
     <a href="#main-content" class="skip-to-content">Saltar al contenido</a>
     <Header />
     <main id="main-content">
@@ -67,27 +75,100 @@ import "../styles/styles.css";
     font-size: 18px;
     font-weight: 400;
     line-height: 24px;
-    color-scheme: light dark;
+    color-scheme: dark;
     font-family:
       "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
       sans-serif;
+    background-color: #0b0f17;
+    overflow-x: hidden;
   }
 
   body {
     min-height: 100vh;
-    background-color: #121212;
-    color: var(--color-text);
+    color: var(--color-text, #f6f6f9);
+    position: relative;
+    background: transparent;
+    overflow-x: hidden;
   }
 
-  body > header {
-    position: relative;
-    background-color: #000;
-    padding: 20px 20px;
-    color: #f6f6f9;
+  /* Fondo ambiental: Aurora Mesh y Rejilla sutil */
+  .ambient-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background-color: #090d16;
+  }
+
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.18;
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  .orb-primary {
+    top: -15%;
+    left: 20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #01be96 0%, rgba(1, 190, 150, 0) 70%);
+    animation: floatPrimary 18s ease-in-out infinite alternate;
+  }
+
+  .orb-secondary {
+    top: 40%;
+    right: -10%;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, #3b82f6 0%, rgba(59, 130, 246, 0) 70%);
+    opacity: 0.13;
+    animation: floatSecondary 22s ease-in-out infinite alternate;
+  }
+
+  .orb-tertiary {
+    bottom: -15%;
+    left: 10%;
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, #0d9488 0%, rgba(13, 148, 136, 0) 70%);
+    opacity: 0.12;
+    animation: floatTertiary 20s ease-in-out infinite alternate;
+  }
+
+  .grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 80%);
+  }
+
+  @keyframes floatPrimary {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(60px, 80px) scale(1.1); }
+  }
+
+  @keyframes floatSecondary {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-80px, 60px) scale(1.15); }
+  }
+
+  @keyframes floatTertiary {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, -60px) scale(1.08); }
   }
 
   main {
     margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
   }
 
   .skip-to-content {
@@ -96,10 +177,10 @@ import "../styles/styles.css";
     left: 50%;
     transform: translateX(-50%);
     background: var(--color-primary);
-    color: #000;
+    color: #0b0f19;
     padding: 8px 16px;
     z-index: 9999;
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 8px 8px;
     font-weight: 600;
     text-decoration: none;
     transition: top 0.2s;
