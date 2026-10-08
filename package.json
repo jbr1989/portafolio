@@ -10,15 +10,18 @@
     "typecheck": "astro check"
   },
   "dependencies": {
-    "astro": "^6.0.2",
+    "astro": "^7.3.7",
     "marked": "^16.4.2",
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
+    "@astrojs/check": "^0.9.10",
     "typescript": "^6.0.3"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
