@@ -4,10 +4,6 @@ import InfoIcon from "../../assets/icons/info.svg";
 import GithubIcon from "../../assets/icons/github.svg";
 import WebsiteIcon from "../../assets/icons/website.svg";
 
-type Technology = {
-  icon?: string;
-};
-
 export interface Props {
   project_id: string;
   title: string;
@@ -31,21 +27,19 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
     <TechnologyList technologies={technologies || []} />
   </div>
   <div class="project-links">
-    <a href={`/proyecto/${project_id}`} aria-label={`Ver información de ${title}`}>
+    <a href={`/proyecto/${project_id}`} aria-label={`Ver información de ${title}`} title="Ver información">
       <InfoIcon
         class="icon-technology"
-        alt="Información"
-        title="Ver información"
+        aria-hidden="true"
         style="fill:white;"
       />
     </a>
     {
       code ? (
-        <a href={code} target="_blank" rel="noopener noreferrer" aria-label={`Ver código de ${title} en GitHub`}>
+        <a href={code} target="_blank" rel="noopener noreferrer" aria-label={`Ver código de ${title} en GitHub`} title="Ver código">
           <GithubIcon
             class="icon-technology"
-            alt="GitHub"
-            title="Ver código"
+            aria-hidden="true"
             style="fill:white;"
           />
         </a>
@@ -53,11 +47,10 @@ const { project_id, technologies, title, img, descr, link, code } = Astro.props;
     }
     {
       link ? (
-        <a href={link} target="_blank" rel="noopener noreferrer" aria-label={`Ver proyecto ${title}`}>
+        <a href={link} target="_blank" rel="noopener noreferrer" aria-label={`Ver proyecto ${title}`} title="Ver proyecto">
           <WebsiteIcon
             class="icon-technology"
-            alt="Website"
-            title="Ver proyecto"
+            aria-hidden="true"
             style="fill:white;"
           />
         </a>

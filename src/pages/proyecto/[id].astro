@@ -1,5 +1,5 @@
 ---
-import { marked } from "marked";
+import { marked, type Tokens } from "marked";
 import * as github from "../../utils/github";
 import { getCollection } from "astro:content";
 
@@ -16,17 +16,13 @@ export async function getStaticPaths() {
 }
 
 const renderer = {
-  heading({ tokens, depth }) {
+  heading(this: { parser: { parseInline: (tokens: Tokens.Generic[]) => string } }, { tokens, depth }: { tokens: Tokens.Generic[]; depth: number }): string {
     const newLevel = Math.min(depth + 1, 6);
-
     const text = this.parser.parseInline(tokens);
-    const escapedText = text.toLowerCase().replace(/[^\w]+/g, "-");
-
     return `<h${newLevel}>${text}</h${newLevel}>`;
   },
 };
 
-const { id } = Astro.params;
 const { project } = Astro.props;
 
 const readme =
@@ -48,8 +44,6 @@ const htmlReadme = marked.parse(readme);
     <div>
       <h2>{project.title}</h2>
 
-      
-
       <div>
         {
           project.link ? (
@@ -69,16 +63,13 @@ const htmlReadme = marked.parse(readme);
 
       <p>{project.descr}</p>
 
-      
       <div>
         Tecnologías usadas:
         <TechnologyList technologies={project.technologies} />
       </div>
-      
     </div>
   </div>
   <div class="container">
-
     <NotepadWindow title="README.md">
       <div set:html={htmlReadme} />
     </NotepadWindow>
