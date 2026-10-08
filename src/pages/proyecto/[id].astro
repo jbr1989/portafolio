@@ -6,6 +6,8 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import TechnologyList from "../../components/technologies/TechnologyList.astro";
 import NotepadWindow from "../../components/NotepadWindow.astro";
+import GithubIcon from "../../assets/icons/github.svg";
+import WebsiteIcon from "../../assets/icons/website.svg";
 
 export async function getStaticPaths() {
   const projects = await getCollection("project");
@@ -27,7 +29,7 @@ const { project } = Astro.props;
 
 const readme =
   (await github.getReadme(project.repository)) ||
-  "<p>No hay README disponible</p>";
+  "<p>No hay README disponible en este momento.</p>";
 
 marked.use({ renderer });
 const htmlReadme = marked.parse(readme);
@@ -38,61 +40,269 @@ const htmlReadme = marked.parse(readme);
   description={`${project.descr} — Proyecto de ${project.title}`}
   image={project.img}
   type="article">
-  <div id="proyecto-info" class="container">
-    <img src={project.img} alt={`Captura del proyecto ${project.title}`} loading="lazy" width="600" height="400" />
+  <div class="project-page-container">
+    <!-- Breadcrumb / Back Link -->
+    <nav class="project-nav" aria-label="Navegación de retorno">
+      <a href="/#proyectos" class="back-link">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Volver a proyectos</span>
+      </a>
+    </nav>
 
-    <div>
-      <h2>{project.title}</h2>
-
-      <div>
-        {
-          project.link ? (
-            <a href={project.link} target="_blank" rel="noopener noreferrer" class="link-button">
-              Ver más
-            </a>
-          ) : null
-        }
-        {
-          project.code ? (
-            <a href={project.code} target="_blank" rel="noopener noreferrer" class="link-button">
-              Ver código
-            </a>
-          ) : null
-        }
+    <!-- Main Project Hero Card -->
+    <div class="project-hero-card">
+      <div class="project-preview-wrapper">
+        <img
+          src={project.img}
+          alt={`Captura del proyecto ${project.title}`}
+          loading="eager"
+          width="600"
+          height="380"
+          class="project-hero-image"
+        />
       </div>
 
-      <p>{project.descr}</p>
+      <div class="project-details">
+        <div class="project-header-info">
+          {project.type && project.type.length > 0 && (
+            <div class="project-tags">
+              {project.type.map((t) => (
+                <span class="type-tag">{t}</span>
+              ))}
+            </div>
+          )}
+          <h1 class="project-title-heading">{project.title}</h1>
+          <p class="project-description-text">{project.descr}</p>
+        </div>
 
-      <div>
-        Tecnologías usadas:
-        <TechnologyList technologies={project.technologies} />
+        <div class="project-meta-section">
+          <span class="meta-label">Tecnologías utilizadas</span>
+          <div class="tech-list-wrapper">
+            <TechnologyList technologies={project.technologies} />
+          </div>
+        </div>
+
+        <div class="project-actions">
+          {
+            project.link ? (
+              <a href={project.link} target="_blank" rel="noopener noreferrer" class="btn-action primary">
+                <WebsiteIcon class="btn-icon" aria-hidden="true" />
+                <span>Ver demostración</span>
+              </a>
+            ) : null
+          }
+          {
+            project.code ? (
+              <a href={project.code} target="_blank" rel="noopener noreferrer" class="btn-action secondary">
+                <GithubIcon class="btn-icon" aria-hidden="true" />
+                <span>Ver repositorio</span>
+              </a>
+            ) : null
+          }
+        </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <NotepadWindow title="README.md">
-      <div set:html={htmlReadme} />
-    </NotepadWindow>
+
+    <!-- Readme / Documentation Window -->
+    <div class="project-readme-section">
+      <NotepadWindow title={`${project.repository || project.title}/README.md`}>
+        <div class="markdown-rendered-content" set:html={htmlReadme} />
+      </NotepadWindow>
+    </div>
   </div>
 </Layout>
 
 <style>
-  h2 {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 50px;
+  .project-page-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 2rem auto 4rem auto;
   }
 
-  #proyecto-info {
+  .project-nav {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-muted, #8b949e);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--color-primary, #01be96);
+    background: rgba(1, 190, 150, 0.08);
+    border-color: rgba(1, 190, 150, 0.2);
+    transform: translateX(-3px);
+  }
+
+  .project-hero-card {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 3em;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2.5rem;
+    background: rgba(22, 27, 34, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+    align-items: center;
   }
 
-  #proyecto-info > div {
+  .project-preview-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: #0d1117;
+  }
+
+  .project-hero-image {
+    width: 100%;
+    height: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .project-preview-wrapper:hover .project-hero-image {
+    transform: scale(1.02);
+  }
+
+  .project-details {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.5rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 0.75rem;
+  }
+
+  .type-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    color: var(--color-primary, #01be96);
+    background: rgba(1, 190, 150, 0.1);
+    border: 1px solid rgba(1, 190, 150, 0.25);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .project-title-heading {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-text, #f6f6f9);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .project-description-text {
+    color: var(--color-text-muted, #c9d1d9);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .project-meta-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .meta-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #8b949e;
+  }
+
+  .tech-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 0.5rem;
+  }
+
+  .btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-action.primary {
+    background: var(--color-primary, #01be96);
+    color: #0b0f19;
+    box-shadow: 0 4px 14px rgba(1, 190, 150, 0.3);
+  }
+
+  .btn-action.primary:hover {
+    background: #02d1a6;
+    box-shadow: 0 6px 20px rgba(1, 190, 150, 0.45);
+    transform: translateY(-2px);
+  }
+
+  .btn-action.secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: #f6f6f9;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .btn-action.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  /* Responsive styles */
+  @media (max-width: 860px) {
+    .project-hero-card {
+      grid-template-columns: 1fr;
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+
+    .project-title-heading {
+      font-size: 1.8rem;
+    }
   }
 </style>
